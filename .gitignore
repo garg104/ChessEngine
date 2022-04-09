@@ -5,3 +5,4 @@
 *.txt
 *.a
 *.p
+.DS_Store
