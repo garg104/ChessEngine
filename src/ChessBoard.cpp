@@ -210,6 +210,23 @@ public:
 
 
     /*
+     * Prints the chess board with Piece values at a given place
+     */
+    void printValues() {
+        cout << " - - - - - - - - " << endl;
+        for (int i = 0; i < 8; i++) {
+            cout << "|";
+            for (int j = 0; j < 8; j++) {
+                cout << chessBoard[i * 8 + j] << "|";
+            }
+            cout << "  " << i + 1 << endl;
+        }
+        cout << " - - - - - - - - " << endl
+             << " a b c d e f g h " << endl;
+    }
+
+
+    /*
      * destructor
      */
     ~ChessBoard();

@@ -12,7 +12,11 @@ class Knight: public GamePiece {
         }
 
         virtual bool checkMoveValidity(int orgin, int dest, int* board) {
-            return true;
+            // if () {
+
+            // }
+            
+            return false;
         }
 
 
