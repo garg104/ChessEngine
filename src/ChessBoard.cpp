@@ -18,26 +18,27 @@ public:
         setGamePiecesOnBoard(); // set the pieces on the board
     }
 
+
     /*
      * move the piece from initial to destination if possible
      */
-    bool moveGamePieceToDestination(int initial, int destination, int currentPlayer) {
+    bool moveGamePieceToDestination(int initial, int final, int currentPlayer) {
         int flag = 0;
         // make sure the initial position is not empty
         if (chessBoard[initial] != nil) { 
             // make sure that it is the current player's piece
             if (pieces[chessBoard[initial]]->player == currentPlayer) {
                 // make sure that the desitnation is empty or has oponents piece(kill)
-                if ((chessBoard[destination] == nil) ||
-                    (pieces[chessBoard[destination]]->player != currentPlayer)) {
+                if ((chessBoard[final] == nil) ||
+                    (pieces[chessBoard[final]]->player != currentPlayer)) {
                     // check if the move is a valid move for the piece player is trying to move
-                    if (pieces[chessBoard[initial]]->checkMoveValidity(initial, destination, chessBoard)) {
+                    if (pieces[chessBoard[initial]]->checkMoveValidity(initial, final, chessBoard)) {
                         // remove the piece from destinaton if it exists
-                        if (chessBoard[destination] != nil) {
-                            killPieceAtDestination(destination);
+                        if (chessBoard[final] != nil) {
+                            killPieceAtFinal(final);
                         }
                         // move the game piece and return true
-                        chessBoard[destination] = chessBoard[initial];
+                        chessBoard[final] = chessBoard[initial];
                         chessBoard[initial] = nil;
                         cout << "here" << endl;
                         return true;
@@ -54,10 +55,9 @@ public:
      * Kill the piece at the destination by decreases the piece count of the piece
      * at the destination
      */
-    void killPieceAtDestination(int destination) {
-        gamePieceCount[chessBoard[destination]]--;
+    void killPieceAtFinal(int final) {
+        gamePieceCount[chessBoard[final]]--;
     }
-
 
     /*
      * Make game pieces and add them to the map
@@ -119,6 +119,10 @@ public:
      * refer to gameSetup.cpp for more info
      */
     void setGamePiecesOnBoard() {
+        // set empty spaces
+        for (int i = 0; i < 64; i++) {
+            chessBoard[i] = nil;
+        }
 
         // set black pieces
         chessBoard[a1] = blackRook;
@@ -145,14 +149,8 @@ public:
         for (int i = 48; i <=55; i++) {
             chessBoard[i] = whitePawn;
         }
-
-        // set empty spaces
-        for (int i = 16; i <= 47; i++) {
-            chessBoard[i] = nil;
-        }
         
     }
-
 
     /*
      * Prints the chess board
