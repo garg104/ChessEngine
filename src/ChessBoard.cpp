@@ -1,5 +1,5 @@
 #include "GameSetup.hpp"
-#include "GamePiece.cpp"
+#include "ChessBoard.hpp"
 
 using namespace std;
 
@@ -10,10 +10,6 @@ public:
     std::map<int, GamePiece *> pieces; // a hashmap to keep track of the game pieces
     int gamePieceCount[15];            // the number of a particual game piece on the board
     int turn;                          // to keep track on the player whose turn it is
-
-    //void makePieces();
-    //void setGamePieceCounts();
-    //void setGamePiecesOnBoard();
 
     ChessBoard() {
         turn = 0;               // white plays first always
