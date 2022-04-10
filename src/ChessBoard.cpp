@@ -25,9 +25,40 @@ public:
     /*
      * move the piece from initial to destination if possible
      */
-    bool moveGamePieceToDestination(int initial, int piece, int destination) {
+    bool moveGamePieceToDestination(int initial, int piece, int destination, int currentPlayer) {
+        int flag = 0;
+        // make sure the initial position is not empty
+        if (chessBoard[initial] != nil) { 
+            // make sure that it is the current player's piece
+            if (pieces[chessBoard[initial]]->player == currentPlayer) {
+                // make sure that the desitnation is empty or has oponents piece(kill)
+                if ((chessBoard[destination] == nil) ||
+                    (pieces[chessBoard[destination]]->player != currentPlayer)) {
+                    // check if the move is a valid move for the piece player is trying to move
+                    if (pieces[chessBoard[initial]]->checkMoveValidity(initial, destination, chessBoard)) {
+                        // remove the piece from destinaton if it exists
+                        if (chessBoard[destination] != nil) {
+                            killPieceAtDestination(destination);
+                        }
+                        // move the game piece and return true
+                        chessBoard[destination] = chessBoard[initial];
+                        chessBoard[initial] = nil;
+                        return true;
+                    }
+                } 
+            }
+        }
+
 
         return false;
+    }
+
+    /*
+     * Kill the piece at the destination by decreases the piece count of the piece
+     * at the destination
+     */
+    void killPieceAtDestination(int destination) {
+        gamePieceCount[chessBoard[destination]]--;
     }
 
 

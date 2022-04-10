@@ -11,11 +11,10 @@ class GamePiece {
             return player;
         }
 
-       // virtual bool checkMoveValidity(int orgin, int dest, int* myboard);
+        virtual bool checkMoveValidity(int orgin, int dest, int* myboard);
 
         ~GamePiece();
 };
-
 
 class Pawn : public GamePiece {
     public:
@@ -27,8 +26,10 @@ class Pawn : public GamePiece {
             GamePiece::player = player;
         }
 
-        //virtual bool checkMoveValidity(int orgin, int dest, int* board);
-
+        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
+            
+        }
+        
         ~Pawn();
 
 };
@@ -44,7 +45,7 @@ class Bishop : public GamePiece {
             GamePiece::player = player;
         }
 
-        //virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board);
 
 
         ~Bishop();
@@ -63,7 +64,7 @@ class Knight: public GamePiece {
             GamePiece::player = player;
         }
 
-        //virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board);
 
 
         ~Knight();
@@ -82,7 +83,7 @@ class Rook : public GamePiece {
             GamePiece::player = player;
         }
 
-        //virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board);
 
 
         ~Rook();
@@ -100,7 +101,7 @@ class Queen : public GamePiece {
             GamePiece::player = player;
         }
 
-       // virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board);
 
 
         ~Queen();
@@ -118,7 +119,7 @@ class King : public GamePiece {
             GamePiece::player = player;
         }
 
-       // virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board);
 
 
         ~King();

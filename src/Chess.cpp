@@ -90,7 +90,7 @@ int main() {
         }
 
         // make sure the the input corresponds to a valid move
-        while (!board->moveGamePieceToDestination(initial, piece, destination)) {
+        while (!board->moveGamePieceToDestination(initial, piece, destination, WHITE)) {
             do {
                 cout << "Please enter a valid move: " << endl;
                 cin >> temp1 >> temp2 >> temp3;
