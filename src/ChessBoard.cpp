@@ -177,7 +177,7 @@ public:
                         cout << "Q|";
                         break;
                     case whiteKing:
-                        cout << "C|";
+                        cout << "+|";
                         break;
                     case blackPawn:
                         cout << "p|";
@@ -195,7 +195,7 @@ public:
                         cout << "q|";
                         break;
                     case blackKing:
-                        cout << "c|";
+                        cout << "*|";
                         break;
                     default:
                         cout << " |";

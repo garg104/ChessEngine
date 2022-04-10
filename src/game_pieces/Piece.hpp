@@ -2,5 +2,6 @@
 #define PIECE_H
 
 #include "GamePiece.cpp"
+#include "cmath"
 
 #endif
