@@ -14,14 +14,18 @@ int getTileOnBoard(char a, char b) {
     int row = b;
     row = row - 48;
 
-    if (column >= 97 && column <= 104) { // A to H
+    if (column >= 97 && column <= 104) {
+        // a to h
         column = column - 97;
-        if (row >= 1 && row <= 8) { // 1 to 8
+        if (row >= 1 && row <= 8) {
+            // 1 to 8
             row = row - 1;
-        } else { // error
+        } else {
+            // error
             return -1;
         }
-    } else { // error 
+    } else {
+        // error 
         return -1;
     }
 
@@ -46,22 +50,25 @@ int main() {
 
     cout << "Starting Game\n" << endl;
     board->print();
-    cout << "\nPLAYER INPUT FORMAT IS: INITIAL DESTINATION\n" << endl;
+    
+    // player(white) turn
     board->turn = WHITE; // player(white) turn
 
+    cout << "\nPLAYER INPUT FORMAT IS: INITIAL DESTINATION\n" << endl;
+
+    
     // keep on playing the game till someone wins
-    int initial;
-    int final;
-    string in_initial;
-    string in_final;
     // win condition: other players king count is 0
     while (1) {
-
         // player(white) turn
         board->turn = WHITE; 
         cout << "Your Turn: " << endl;
 
         int inputError = 0;
+        int initial;
+        int final;
+        string in_initial;
+        string in_final;
         do {
             if (inputError > 0) {
                 cout << "Please enter a valid move: " << endl;
@@ -74,7 +81,6 @@ int main() {
         } while ((initial < 0 || final < 0) ||
                  (!board->moveGamePieceToDestination(initial, final, WHITE)));
         
-
         board->print();
 
         // check for white's victory
@@ -85,11 +91,10 @@ int main() {
         }
 
 
-
-
         // AI move (black player)
         board->turn = BLACK;
         cout << "Computer's Turn: " << endl;
+
 
 
         // check for black's victory
