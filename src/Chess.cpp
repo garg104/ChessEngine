@@ -20,21 +20,15 @@ int getTileOnBoard(char a, char b) {
     int column = a;
     int row = b;
     row = row - 48;
-    cout << column << " " << row << endl;
-
-    
 
     if (column >= 97 && column <= 104) { // A to H
         column = column - 97;
+        if (row >= 1 && row <= 8) { // 1 to 8
+            row = row - 1;
+        } else { // error
+            return -1;
+        }
     } else { // error 
-        cout << "here1" << endl; 
-        return -1;
-    }
-
-    if (row >= 1 && row <= 8) { // 1 to 8
-        row = row - 1;
-    } else { // error
-    cout << "here2" << endl; 
         return -1;
     }
 
@@ -82,25 +76,12 @@ int main() {
             }
             // get player move
             cin >> in_initial >> in_final;
-            //cout << "test " << in_initial[0] << " asd " << in_initial[1] << endl;
             initial = getTileOnBoard(in_initial[0], in_initial[1]);
             final = getTileOnBoard(in_final[0], in_final[1]);
-            //cout << "paresed input " << initial << " " << final << endl;
             inputError++;
         } while ((initial < 0 || final < 0) ||
                  (!board->moveGamePieceToDestination(initial, final, WHITE)));
         
-
-        // // make sure the the input corresponds to a valid move
-        // while (!board->moveGamePieceToDestination(initial, final, WHITE)) {
-        //     do {
-        //         cout << "Please enter a valid move: " << endl;
-        //         cin >> in_initial >> in_final;
-        //         initial = getTileOnBoard(in_initial[0], in_initial[1]);
-        //         final = getTileOnBoard(in_final[0], in_final[1]);
-        //         cout << "paresed input " << initial << " " << final << endl;
-        //     } while (initial < 0 || final < 0);
-        // }
 
         board->print();
 
