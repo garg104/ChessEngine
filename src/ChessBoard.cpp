@@ -25,7 +25,7 @@ public:
     /*
      * move the piece from initial to destination if possible
      */
-    bool moveGamePieceToDestination(int initial, int piece, int destination, int currentPlayer) {
+    bool moveGamePieceToDestination(int initial, int destination, int currentPlayer) {
         int flag = 0;
         // make sure the initial position is not empty
         if (chessBoard[initial] != nil) { 

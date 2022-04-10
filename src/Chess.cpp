@@ -65,53 +65,42 @@ int main() {
 
     // keep on playing the game till someone wins
     int initial;
-    int piece;
-    int destination;
-    string temp1;
-    string temp2;
-    string temp3;
-    while (1) { 
-        // win condition: other players king count is 0
+    int final;
+    string in_initial;
+    string in_final;
+    // win condition: other players king count is 0
+    while (1) {
 
-         
-        
-
-
-        // get player move
-        board->turn = WHITE; // player(white) turn
+        // player(white) turn
+        board->turn = WHITE; 
         cout << "Your Turn: " << endl;
 
-        // take the input in and parse
-        cin >> temp1 >> temp2 >> temp3;
-        cout << "test " << temp1[0] << " asd " << temp1[1] << endl;
-        initial = getTileOnBoard(temp1[0], temp1[1]);
-        piece = temp2[0];
-        destination = getTileOnBoard(temp3[0], temp3[1]);
-        cout << "paresed input " << initial << " " << destination << endl;
-
-
-        // make sure that the input is valid
-        while (initial < 0 || destination < 0) {
-            cout << "Please enter a valid move: " << endl;
-            cin >> temp1 >> temp2 >> temp3;
-            cout << "test" << temp1[0] << "asd" << temp1[1];
-            initial = getTileOnBoard(temp1[0], temp1[1]);
-            piece = temp2[0];
-            destination = getTileOnBoard(temp3[0], temp3[1]);
-            cout << "paresed input " << initial << " " << destination << endl;
-        }
-
-        // make sure the the input corresponds to a valid move
-        while (!board->moveGamePieceToDestination(initial, piece, destination, WHITE)) {
-            do {
+        int inputError = 0;
+        do {
+            if (inputError > 0) {
                 cout << "Please enter a valid move: " << endl;
-                cin >> temp1 >> temp2 >> temp3;
-                initial = getTileOnBoard(temp1[0], temp1[1]);
-                piece = temp2[0];
-                destination = getTileOnBoard(temp3[0], temp3[1]);
-                cout << "paresed input " << initial << " " << destination << endl;
-            } while (initial < 0 || destination < 0);
-        }
+            }
+            // get player move
+            cin >> in_initial >> in_final;
+            //cout << "test " << in_initial[0] << " asd " << in_initial[1] << endl;
+            initial = getTileOnBoard(in_initial[0], in_initial[1]);
+            final = getTileOnBoard(in_final[0], in_final[1]);
+            //cout << "paresed input " << initial << " " << final << endl;
+            inputError++;
+        } while ((initial < 0 || final < 0) ||
+                 (!board->moveGamePieceToDestination(initial, final, WHITE)));
+        
+
+        // // make sure the the input corresponds to a valid move
+        // while (!board->moveGamePieceToDestination(initial, final, WHITE)) {
+        //     do {
+        //         cout << "Please enter a valid move: " << endl;
+        //         cin >> in_initial >> in_final;
+        //         initial = getTileOnBoard(in_initial[0], in_initial[1]);
+        //         final = getTileOnBoard(in_final[0], in_final[1]);
+        //         cout << "paresed input " << initial << " " << final << endl;
+        //     } while (initial < 0 || final < 0);
+        // }
 
         board->print();
 
