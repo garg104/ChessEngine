@@ -1,4 +1,3 @@
-#include "GameSetup.hpp"
 #include "ChessBoard.hpp"
 
 using namespace std;
@@ -156,9 +155,10 @@ public:
      * Prints the chess board
      */
     void print() {
-        cout << " - - - - - - - - " << endl;
+        cout << "    a b c d e f g h " << endl
+             << "    - - - - - - - - " << endl;
         for (int i = 0; i < 8; i++) {
-            cout << "|";
+            cout << i + 1 << "  |";
             for (int j = 0; j < 8; j++) {
                 switch (chessBoard[i * 8 + j]) {
                     case whitePawn:
@@ -204,8 +204,8 @@ public:
             }
             cout << "  " << i + 1 << endl;
         }
-        cout << " - - - - - - - - " << endl
-             << " a b c d e f g h " << endl;
+        cout << "    - - - - - - - - " << endl
+             << "    a b c d e f g h " << endl;
     }
 
 

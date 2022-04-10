@@ -1,7 +1,7 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
-
+#include "GameSetup.hpp"
 #include "./game_pieces/Pawn.cpp"
 #include "./game_pieces/Rook.cpp"
 #include "./game_pieces/Knight.cpp"

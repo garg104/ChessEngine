@@ -54,8 +54,5 @@ enum gamePieceValue {
     blackKing = king + convertor,
 };
 
-class ChessBoard;
-class GamePiece;
-class Evaluation;
 
 #endif

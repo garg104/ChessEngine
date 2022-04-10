@@ -11,10 +11,12 @@ class Knight: public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
-            // if () {
+        virtual bool checkMoveValidity(int initial, int final, int* board) {
+            int row = initial / 8;
+            int column = initial % 8;
+            if (row ) {
 
-            // }
+            }
             
             return false;
         }

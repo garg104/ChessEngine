@@ -1,11 +1,4 @@
-//#include <iostream>
-//#include <cstring>
-//#include <cstdio>
-//#include <fstream>
-//#include <time.h>
-
-#include "GameSetup.hpp"
-#include "ChessBoard.cpp"
+#include "Chess.hpp"
 
 
 /*
@@ -36,7 +29,6 @@ int getTileOnBoard(char a, char b) {
 }
 
 
-
 /*
  * runs the chess engine
  */
@@ -54,7 +46,7 @@ int main() {
 
     cout << "Starting Game\n" << endl;
     board->print();
-    cout << "\nPLAYER INPUT FORMAT IS: \nINITIAL GAME_PIECE DESTINATION\n" << endl;
+    cout << "\nPLAYER INPUT FORMAT IS: INITIAL DESTINATION\n" << endl;
     board->turn = WHITE; // player(white) turn
 
     // keep on playing the game till someone wins
