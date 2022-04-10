@@ -16,18 +16,25 @@
  * 
  * @return the location number on the chess board
  */
-int getTileOnBoard(char column, char row) {
-    if (column >= 65 && column <= 72) { // A to H
-        column = column - 65;
-    } else if (column >= 97 && column <= 104) { // a to h
+int getTileOnBoard(char a, char b) {
+    int column = a;
+    int row = b;
+    row = row - 48;
+    cout << column << " " << row << endl;
+
+    
+
+    if (column >= 97 && column <= 104) { // A to H
         column = column - 97;
-    } else { // error
+    } else { // error 
+        cout << "here1" << endl; 
         return -1;
     }
 
     if (row >= 1 && row <= 8) { // 1 to 8
         row = row - 1;
     } else { // error
+    cout << "here2" << endl; 
         return -1;
     }
 
@@ -76,17 +83,22 @@ int main() {
 
         // take the input in and parse
         cin >> temp1 >> temp2 >> temp3;
-        initial = getTileOnBoard(temp1[0], temp2[1]);
+        cout << "test " << temp1[0] << " asd " << temp1[1] << endl;
+        initial = getTileOnBoard(temp1[0], temp1[1]);
         piece = temp2[0];
         destination = getTileOnBoard(temp3[0], temp3[1]);
+        cout << "paresed input " << initial << " " << destination << endl;
+
 
         // make sure that the input is valid
         while (initial < 0 || destination < 0) {
             cout << "Please enter a valid move: " << endl;
             cin >> temp1 >> temp2 >> temp3;
+            cout << "test" << temp1[0] << "asd" << temp1[1];
             initial = getTileOnBoard(temp1[0], temp1[1]);
             piece = temp2[0];
             destination = getTileOnBoard(temp3[0], temp3[1]);
+            cout << "paresed input " << initial << " " << destination << endl;
         }
 
         // make sure the the input corresponds to a valid move
@@ -97,6 +109,7 @@ int main() {
                 initial = getTileOnBoard(temp1[0], temp1[1]);
                 piece = temp2[0];
                 destination = getTileOnBoard(temp3[0], temp3[1]);
+                cout << "paresed input " << initial << " " << destination << endl;
             } while (initial < 0 || destination < 0);
         }
 

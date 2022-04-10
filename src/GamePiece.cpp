@@ -11,7 +11,9 @@ class GamePiece {
             return player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* myboard);
+        virtual bool checkMoveValidity(int orgin, int dest, int* myboard) {
+            return true;
+        };
 
         ~GamePiece();
 };
@@ -26,8 +28,8 @@ class Pawn : public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
-            
+        virtual bool checkMoveValidity(int origin, int dest, int* board) {
+            return true;
         }
         
         ~Pawn();
@@ -45,7 +47,9 @@ class Bishop : public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
+            return true;
+        }
 
 
         ~Bishop();
@@ -64,7 +68,9 @@ class Knight: public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
+            return true;
+        }
 
 
         ~Knight();
@@ -83,7 +89,9 @@ class Rook : public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
+            return true;
+        }
 
 
         ~Rook();
@@ -101,7 +109,9 @@ class Queen : public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
+            return true;
+        }
 
 
         ~Queen();
@@ -119,7 +129,9 @@ class King : public GamePiece {
             GamePiece::player = player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* board);
+        virtual bool checkMoveValidity(int orgin, int dest, int* board) {
+            return true;
+        }
 
 
         ~King();

@@ -43,6 +43,7 @@ public:
                         // move the game piece and return true
                         chessBoard[destination] = chessBoard[initial];
                         chessBoard[initial] = nil;
+                        cout << "here" << endl;
                         return true;
                     }
                 } 
