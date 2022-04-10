@@ -36,7 +36,8 @@ class Queen : public GamePiece {
             cout << "Jump is " << jump << endl;
 
             // make sure that the way to the final is clear
-            for (int i = 1; i <= (diff/abs(jump)); i++) {
+            // we do not need to check the final position as it is either epmty or is kill
+            for (int i = 1; i < (diff/abs(jump)); i++) {
                 cout << "value at " << initial + (i * jump) << " is " << board[initial + (i * jump)] << endl;
                 if (board[initial + (i * jump)] != nil) { // path is blocked
                     return false;
