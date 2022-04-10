@@ -17,9 +17,17 @@ public:
 
     ChessBoard() {
         turn = 0;               // white plays first always
-        //makePieces();           // make the game peices
+        makePieces();           // make the game peices
         setGamePieceCounts();   // set the number of game peices
         setGamePiecesOnBoard(); // set the pieces on the board
+    }
+
+    /*
+     * move the piece from initial to destination if possible
+     */
+    bool moveGamePieceToDestination(int initial, int piece, int destination) {
+
+        return false;
     }
 
 

@@ -52,7 +52,6 @@ class Bishop : public GamePiece {
 
 };
 
-
 class Knight: public GamePiece {
 
     public:
@@ -71,7 +70,6 @@ class Knight: public GamePiece {
 
 
 };
-
 
 class Rook : public GamePiece {
 
