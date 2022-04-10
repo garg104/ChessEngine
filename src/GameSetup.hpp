@@ -1,5 +1,5 @@
-#ifndef CHESS_BOARD_H
-#define CHESS_BOARD_H
+#ifndef GAME_SETUP_H
+#define GAME_SETUP_H
 
 #include<iostream>
 #include<map>
