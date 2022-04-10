@@ -1,7 +1,5 @@
 #include "ChessBoard.hpp"
 
-using namespace std;
-
 class ChessBoard {
 
 public:
