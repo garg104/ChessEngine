@@ -23,7 +23,7 @@ public:
         StaticEvaluation *scoreTables = new StaticEvaluation(0);
 
         for (int i = 0; i < 64; i++) {
-            if (pieces[chessBoard[i]]->player == player) {
+            if (chessBoard[i] != nil && pieces[chessBoard[i]]->player == player) {
                 // add to the score
                 value = value + scoreTables->score[chessBoard[i]][i];
             } else {

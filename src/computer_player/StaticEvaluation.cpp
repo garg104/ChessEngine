@@ -1,4 +1,5 @@
 #include "StaticEvaluation.hpp"
+#include <cstring>
 
 
 class StaticEvaluation {

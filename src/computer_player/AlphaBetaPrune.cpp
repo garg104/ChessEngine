@@ -1,4 +1,5 @@
 #include "AlphaBetaPrune.hpp"
+#include <climits>
 
 
 ChessBoard* alphaBetaPrune(int maxDepth, ChessBoard* board) {
