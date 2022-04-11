@@ -2,7 +2,5 @@
 #define EVALUATION_H
 
 #include "../GameSetup.hpp"
-// #include "../ChessBoard.cpp"
-
 
 #endif
