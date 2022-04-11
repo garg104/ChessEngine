@@ -96,10 +96,11 @@ int main() {
         cout << "Computer's Turn: " << endl;
         copy = alphaBetaPrune(maxDepth, board);
 
-        //delete board;
+        delete board;
         board = copy;
         
         board->print();
+        board->printValues();
 
 
         // check for black's victory

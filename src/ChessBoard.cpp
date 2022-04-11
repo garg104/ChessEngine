@@ -78,7 +78,7 @@ public:
                 for (int final = 0; final < 64; final++) {
                     // make sure that the move is valid and add the move to the list and restore the board
                     if (final != initial) {
-                        if (trial->pieces[chessBoard[initial]]->checkMoveValidity(initial, final, chessBoard)) {
+                        if ((trial->pieces[chessBoard[initial]])->checkMoveValidity(initial, final, chessBoard)) {
                             if (trial->moveGamePieceToDestination(initial, final, player)) {
                                 // store this move in the list
                                 ChessBoard* move = new ChessBoard();
