@@ -47,9 +47,8 @@ public:
         }
 
         // make sure to free memory
-        delete trial;
+        // delete trial;
         return moves;
-
     }
 
 

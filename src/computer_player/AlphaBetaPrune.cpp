@@ -1,8 +1,6 @@
 #include "AlphaBetaPrune.hpp"
 
 
-
-
 ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alpha, int beta, int action) {
     // if maximum depth is reached
     if (depth >= maxDepth) {
