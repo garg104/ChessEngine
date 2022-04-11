@@ -16,6 +16,53 @@ public:
     }
 
     /*
+     * evaluate the score 
+     */
+    int evaluate(int player) {
+        int value = 0;
+        StaticEvaluation *scoreTables = new StaticEvaluation(0);
+
+        for (int i = 0; i < 64; i++) {
+            if (pieces[chessBoard[i]]->player == player) {
+                // add to the score
+                value = value + scoreTables->score[chessBoard[i]][i];
+            } else {
+                // subtract to the score
+                if(chessBoard[i] == whitePawn || chessBoard[i] == blackPawn){
+				    value -= 100;
+                } else if(chessBoard[i] == whiteKinght || chessBoard[i] == blackKinght){
+                    value -= 320;
+                } else if(chessBoard[i] == whiteBishop || chessBoard[i] == blackBishop){
+                    value -= 330;
+                } else if(chessBoard[i] == whiteRook || chessBoard[i] == blackRook){
+                    value -= 500;
+                } else if(chessBoard[i] == whiteQueen || chessBoard[i] == blackQueen){
+                    value -= 900;
+                } else if(chessBoard[i] == whiteKing || chessBoard[i] == blackKing){
+                    value -= 20000;
+                }
+
+            }
+
+        }
+
+        if (player == BLACK ){
+            if (gamePieceCount[blackKing] == 0 ){
+                value -= 100000;
+            }
+        } else {
+            if (gamePieceCount[whiteKing] == 0 ){
+                value += 100000;
+            }
+	    }
+        
+        return value;
+
+    }
+
+
+
+    /*
      * find  and return the list of all the possible moves at the given instance of the board 
      */
     vector<ChessBoard*> getAllPossibleMoves(int player) {
@@ -50,7 +97,6 @@ public:
         delete trial;
         return moves;
     }
-
 
     /*
      * move the piece from initial to destination if possible
@@ -115,7 +161,6 @@ public:
         pieces[whiteKing] = new King(WHITE);      
         pieces[blackKing] = new King(BLACK);
     }
-
 
     /*
      * Set the game piece counts to keep track of the pieces on board
@@ -241,7 +286,6 @@ public:
         cout << "    - - - - - - - - " << endl
              << "    a b c d e f g h " << endl;
     }
-
 
     /*
      * Prints the chess board with Piece values at a given place
