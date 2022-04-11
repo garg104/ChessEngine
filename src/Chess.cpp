@@ -94,7 +94,7 @@ int main() {
         // AI move (black player)
         board->turn = BLACK;
         cout << "Computer's Turn: " << endl;
-
+        copy = alphaBetaPrune(maxDepth, board);
 
 
         // check for black's victory

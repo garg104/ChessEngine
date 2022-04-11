@@ -15,6 +15,43 @@ public:
         setGamePiecesOnBoard(); // set the pieces on the board
     }
 
+    /*
+     * find  and return the list of all the possible moves at the given instance of the board 
+     */
+    vector<ChessBoard*> getAllPossibleMoves(int player) {
+        vector<ChessBoard*> moves;
+        // make a trial chess board on which to try the moves and copy the existing board in it
+        ChessBoard* trial = new ChessBoard();
+        *trial = *this;
+
+        // check every possible move combination
+        for (int initial = 0; initial < 64; initial++) {
+            // make sure that the initial has the player's piece at that position
+            if (chessBoard[initial] != nil && pieces[chessBoard[initial]]->player == player) {
+                for (int final = 0; final < 64; final++) {
+                    // make sure that the move is valid and add the move to the list and restore the board
+                    if (final != initial) {
+                        if (trial->pieces[chessBoard[initial]]->checkMoveValidity(initial, final, chessBoard)) {
+                            if (trial->moveGamePieceToDestination(initial, final, player)) {
+                                // store this move in the list
+                                ChessBoard* move = new ChessBoard();
+                                *move = *trial;
+                                moves.push_back(move);
+                                // restore the board for next move calculation 
+                                *trial = *this;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // make sure to free memory
+        delete trial;
+        return moves;
+
+    }
+
 
     /*
      * move the piece from initial to destination if possible
