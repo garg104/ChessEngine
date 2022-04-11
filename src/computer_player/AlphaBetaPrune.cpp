@@ -58,8 +58,8 @@ ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alp
         delete possibleMoves[i];
     }
 
-
     return finalResult;
 }
+
 
 
