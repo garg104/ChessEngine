@@ -94,7 +94,7 @@ public:
         }
 
         // make sure to free memory
-        delete trial;
+        // delete trial;
         return moves;
     }
 
@@ -119,7 +119,7 @@ public:
                         // move the game piece and return true
                         chessBoard[final] = chessBoard[initial];
                         chessBoard[initial] = nil;
-                        cout << "here" << endl;
+                        // cout << "here" << endl;
                         return true;
                     }
                 } 

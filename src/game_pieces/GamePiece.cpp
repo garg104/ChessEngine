@@ -14,7 +14,7 @@ class GamePiece {
         virtual bool checkMoveValidity(int orgin, int dest, int* myboard) {
             return true;
         };
-        
+
 
         ~GamePiece();
 };

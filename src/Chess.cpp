@@ -96,6 +96,11 @@ int main() {
         cout << "Computer's Turn: " << endl;
         copy = alphaBetaPrune(maxDepth, board);
 
+        //delete board;
+        board = copy;
+        
+        board->print();
+
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {

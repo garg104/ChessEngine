@@ -29,10 +29,10 @@ ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alp
             // update alpha-beta by gettting scores
             if (childAction == 1) {
                 // Black
-                // beta = tempMove->evaluate(BLACK);
+                beta = tempMove->evaluate(BLACK);
             } else {
                 // White
-                // alpha = tempMove->evaluate(WHITE);
+                alpha = tempMove->evaluate(WHITE);
             }
         }
         // prune
