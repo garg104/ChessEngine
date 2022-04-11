@@ -5,8 +5,9 @@
 #include "../ChessBoard.cpp"
 
 
-bool isMoveBetterThan(ChessBoard* tempMove, ChessBoard* bestMove, int player) {
+bool isMoveBetterThan(ChessBoard* tempMove, ChessBoard* bestMove, int action) {
     return true;
+    // return (action == 1) ? (tempMove->evaluate(BLACK) > bestMove->evaluate(BLACK)) : (tempMove->evaluate(WHITE) < bestMove->evaluate(WHITE));
 }
 
 ChessBoard* alphaBetaPrune(int maxDepth, ChessBoard* board);
