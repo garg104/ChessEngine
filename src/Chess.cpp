@@ -100,7 +100,7 @@ int main() {
         board = copy;
         
         board->print();
-        board->printValues();
+        //board->printValues();
 
 
         // check for black's victory

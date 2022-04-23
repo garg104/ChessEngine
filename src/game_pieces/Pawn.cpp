@@ -12,6 +12,11 @@ class Pawn : public GamePiece {
         }
 
         virtual bool checkMoveValidity(int initial, int final, int* board) {
+            int finalRow = final / 8;
+            int finalCol = final % 8;
+            int initialRow = initial / 8;
+            int initialCol = initial % 8;
+
             if (player == WHITE) { // white player
                 if(board[final] == nil) { // no-kill
                     // white pawn can move up 1 always but can only move 2 up when at start
@@ -21,9 +26,11 @@ class Pawn : public GamePiece {
                     } 
                 } else { // kill
                     // white pawn can move diagonal-up 1 
-                    if ((initial - final == 7) ||
-                        (initial - final == 9)) {
-                        return true;
+                    if (finalRow <= 7 && finalRow + 1 == initialRow) {
+                        if ((finalCol >= 0 && finalCol <= 7) && 
+                            (finalCol - 1 == initialCol || finalCol + 1 == initialCol)) {
+                            return true;
+                        }
                     }
                 }
             } else { // black player
@@ -34,10 +41,12 @@ class Pawn : public GamePiece {
                         return true;
                     } 
                 } else { // kill
-                    // black pawn can move diagonal-down 1
-                    if ((final - initial == 7) ||
-                        (final - initial == 9 )) {
-                        return true;
+                    // black pawn can move diagonal-up 1 
+                    if (finalRow <= 7 && finalRow - 1 == initialRow) {
+                        if ((finalCol >= 0 && finalCol <= 7) && 
+                            (finalCol - 1 == initialCol || finalCol + 1 == initialCol)) {
+                            return true;
+                        }
                     }
                 }
             }

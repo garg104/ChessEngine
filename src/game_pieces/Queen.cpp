@@ -12,6 +12,54 @@ class Queen : public GamePiece {
         }
 
         virtual bool checkMoveValidity(int initial, int final, int* board) {
+            int finalRow = final / 8;
+            int finalCol = final % 8;
+            int initialRow = initial / 8;
+            int initialCol = initial % 8;
+
+            if (finalRow > initialRow) {
+                // down
+
+
+            } else if (finalRow == initialRow) {
+                // same row
+                if (finalCol > initialCol) {
+                    // right
+                    for (int i = initialCol; i < finalCol; i++) {
+                        if (board[finalRow * 8 + i] != nil) { // path is blocked
+                            return false;
+                        }
+                    }
+
+                } else {
+                    // left
+
+                }
+
+
+            } else {
+                // up
+
+            }
+
+
+            // move along row and then one cross column
+
+
+
+
+            if ((finalRow >= 0 && finalRow <= 7) && 
+                (abs(finalRow - initialRow) == 2)) {
+                if ((finalCol >= 0 && finalCol <= 7) && 
+                    (abs(finalCol - initialCol) == 1)) {
+                    return true;
+                }
+            }
+
+
+
+
+
             int diff = abs(initial - final);
 
             // check along diagonals and up-down and left-right
