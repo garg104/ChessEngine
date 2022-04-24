@@ -110,9 +110,7 @@ int main(int argc, char **argv) {
         // check for white's victory
         if (board->gamePieceCount[blackKing] == 0) {
             // white wins
-            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
             cout << "White Wins!" << endl;
-            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
         }
 
 
@@ -126,7 +124,6 @@ int main(int argc, char **argv) {
             copy = alphaBetaPrune(maxDepth, board);
         } else {
             copy = alphaBetaPrune(maxDepth, board);
-
         }
 
         delete board;
@@ -137,23 +134,14 @@ int main(int argc, char **argv) {
         
         // get the time taken
         double time = (double)(end - start)/CLOCKS_PER_SEC;
-
         
         board->print();
         timeAI << time << endl;
-        //board->printValues();
-
-        cout << "################################" << endl;
-        cout << "time: " << time << endl;
-        cout << "################################" << endl;
-
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {
             // Black wins
-            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
             cout << "Black Wins!" << endl;
-            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
             break;
         }
 
