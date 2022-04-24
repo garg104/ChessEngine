@@ -12,35 +12,97 @@ class Bishop : public GamePiece {
         }
 
         virtual bool checkMoveValidity(int initial, int final, int* board) {
-            int diff = abs(initial - final);
+            int finalRow = final / 8;
+            int finalCol = final % 8;
+            int initialRow = initial / 8;
+            int initialCol = initial % 8;
 
-            // check along diagonals
-            int jump = 0;
-            if (diff % 9 == 0) {
-                jump = 9;
-            } else if (diff % 7 == 0) {
-                jump = 7;
-            }
 
-            // none of the 2 possible directions
-            if (jump == 0) {
-                return false;
-            }
+            if (finalRow > initialRow) {
+                // down
+                if (finalCol > initialCol) {
+                    // down right
+                    int nextCol = initialCol + 1;
+                    int nextRow = initialRow + 1;
+                    while (nextCol < 8 && nextRow < 8) {    
+                        if ((nextRow * 8) + nextCol == final) {
+                            return true;
+                        }
 
-            // get jump direction
-            jump = (initial - final) > 0 ? (0 - jump) : jump;
-            // cout << "Jump is " << jump << endl;
+                        if (board[(nextRow * 8) + nextCol] != nil) {
+                            return false;
+                        }
 
-            // make sure that the way to the final is clear
-            // we do not need to check the final position as it is either epmty or is kill
-            for (int i = 1; i < (diff/abs(jump)); i++) {
-                // cout << "value at " << initial + (i * jump) << " is " << board[initial + (i * jump)] << endl;
-                if (board[initial + (i * jump)] != nil) { // path is blocked
+                        nextCol++;
+                        nextRow++;
+                    }
+
+                    return false; 
+                } else {
+                    // down left
+                    int nextCol = initialCol - 1;
+                    int nextRow = initialRow + 1;
+                    while (nextCol >= 0 && nextRow < 8) {    
+                        if ((nextRow * 8) + nextCol == final) {
+                            return true;
+                        }
+
+                        if (board[(nextRow * 8) + nextCol] != nil) {
+                            return false;
+                        }
+
+                        nextCol--;
+                        nextRow++;
+                    }
+
                     return false;
+
+                }     
+            } else if (finalRow < initialRow) {
+                // up
+                if (finalCol > initialCol) {
+                    // up right
+                    int nextCol = initialCol + 1;
+                    int nextRow = initialRow - 1;
+                    while (nextCol < 8 && nextRow >= 0) {
+                        if ((nextRow * 8) + nextCol == final) {
+                            return true;
+                        }
+
+                        if (board[(nextRow * 8) + nextCol] != nil) {
+                            return false;
+                        }
+
+                        nextCol++;
+                        nextRow--;
+                    }
+
+                    return false; 
+                } else {
+                    // up left
+                    int nextCol = initialCol - 1;
+                    int nextRow = initialRow - 1;
+                    while (nextCol >= 0 && nextRow >= 0) {    
+                        if ((nextRow * 8) + nextCol == final) {
+                            return true;
+                        }
+
+                        if (board[(nextRow * 8) + nextCol] != nil) {
+                            return false;
+                        }
+
+                        nextCol--;
+                        nextRow--;
+                    }
+
+                    return false;
+
                 }
+
             }
+
             
-            return true;
+            return false;
         }
 
 
