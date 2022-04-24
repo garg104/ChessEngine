@@ -36,11 +36,12 @@ int getTileOnBoard(char a, char b) {
 /*
  * runs the chess engine
  */
-int main() {
+int main(int argc, char **argv) {
 
     // default values
     int maxDepth = 5;
     int nThreads = 5;
+    int aiType = 1;
 
     // parse in the arguments to definie the game patameters
 
@@ -57,6 +58,18 @@ int main() {
     timeAI.open ("time.txt");
     ofstream move;
     move.open ("moves.txt");
+
+
+    if (argc > 1) {
+        aiType = atoi(argv[1]);
+    }
+    if (argc > 2) {
+        maxDepth = atoi(argv[2]);
+    }
+    if (argc > 3) {
+        nThreads = atoi(argv[3]);
+    }
+
 
     cout << "Starting Game\n" << endl;
     board->print();
@@ -109,9 +122,13 @@ int main() {
 
         // start time
         start = clock();
+        if (aiType == 1) {
+            copy = alphaBetaPrune(maxDepth, board);
+        } else {
+            copy = alphaBetaPrune(maxDepth, board);
 
+        }
 
-        copy = alphaBetaPrune(maxDepth, board);
         delete board;
         board = copy;
 
