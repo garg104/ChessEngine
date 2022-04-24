@@ -4,5 +4,7 @@
 #include "GameSetup.hpp"
 #include "./computer_player/AlphaBetaPrune.cpp"
 
+#include <time.h>
+
 
 #endif

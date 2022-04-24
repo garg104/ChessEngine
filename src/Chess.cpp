@@ -48,6 +48,16 @@ int main() {
     ChessBoard *board = new ChessBoard();
     ChessBoard *copy = new ChessBoard();
 
+    // time vaiables to keep track of the time taken by the AI
+    clock_t start;
+    clock_t end;
+
+    // files to keep track of moves and time
+    ofstream timeAI;
+    timeAI.open ("time.txt");
+    ofstream move;
+    move.open ("moves.txt");
+
     cout << "Starting Game\n" << endl;
     board->print();
     
@@ -81,37 +91,60 @@ int main() {
         } while ((initial < 0 || final < 0) ||
                  (!board->moveGamePieceToDestination(initial, final, WHITE)));
         
+        move << in_initial << " " << in_final << endl;
         board->print();
 
         // check for white's victory
         if (board->gamePieceCount[blackKing] == 0) {
             // white wins
+            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
             cout << "White Wins!" << endl;
-            break;
+            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
         }
 
 
         // AI move (black player)
         board->turn = BLACK;
         cout << "Computer's Turn: " << endl;
-        copy = alphaBetaPrune(maxDepth, board);
 
+        // start time
+        start = clock();
+
+
+        copy = alphaBetaPrune(maxDepth, board);
         delete board;
         board = copy;
+
+        // end time
+        end = clock();
+        
+        // get the time taken
+        double time = (double)(end - start)/CLOCKS_PER_SEC;
+
         
         board->print();
+        timeAI << time << endl;
         //board->printValues();
+
+        cout << "################################" << endl;
+        cout << "time: " << time << endl;
+        cout << "################################" << endl;
 
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {
             // Black wins
+            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
             cout << "Black Wins!" << endl;
+            cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
             break;
         }
 
 
     }
+
+    timeAI.close();
+    move.close();
 
     return 0;
 }
