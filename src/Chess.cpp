@@ -1,4 +1,5 @@
 #include "Chess.hpp"
+#include <chrono>
 
 
 /*
@@ -48,10 +49,6 @@ int main(int argc, char **argv) {
     // make the chess board to play the game on
     ChessBoard *board = new ChessBoard();
     ChessBoard *copy = new ChessBoard();
-
-    // time vaiables to keep track of the time taken by the AI
-    clock_t start;
-    clock_t end;
 
     // files to keep track of moves and time
     ofstream timeAI;
@@ -120,26 +117,26 @@ int main(int argc, char **argv) {
         cout << "Computer's Turn: " << endl;
 
         // start time
-        start = clock();
+        auto start = std::chrono::high_resolution_clock::now();
         if (aiType == 1) {
             copy = alphaBetaPrune(maxDepth, board);
         } else {
-            cout << "PV Splitting" << endl;
+            //cout << "PV Splitting" << endl;
             copy = PVSplit(nThreads, maxDepth, board);
         }
+        // end time
+        auto end = std::chrono::high_resolution_clock::now();
+        long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        cout <<  (double) microseconds/1000000 << endl;
 
         delete board;
         board = copy;
-
-        // end time
-        end = clock();
         
         // get the time taken
-        double time = (double)(end - start)/CLOCKS_PER_SEC;
         
         board->print();
-        timeAI << time << endl;
-        cout << time << endl;
+        timeAI << (double) microseconds/1000000 << endl;
+        cout << (double) microseconds/1000000 << endl;
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {
