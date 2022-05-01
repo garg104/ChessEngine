@@ -72,6 +72,7 @@ int main(int argc, char **argv) {
 
 
     cout << "Starting Game\n" << endl;
+
     board->print();
     
     // player(white) turn
@@ -123,7 +124,8 @@ int main(int argc, char **argv) {
         if (aiType == 1) {
             copy = alphaBetaPrune(maxDepth, board);
         } else {
-            copy = alphaBetaPrune(maxDepth, board);
+            cout << "PV Splitting" << endl;
+            copy = PVSplit(nThreads, maxDepth, board);
         }
 
         delete board;
@@ -137,6 +139,7 @@ int main(int argc, char **argv) {
         
         board->print();
         timeAI << time << endl;
+        cout << time << endl;
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {
