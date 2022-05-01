@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
     int maxDepth = 5;
     int nThreads = 5;
     int aiType = 1;
+    int test = 0;
 
     // parse in the arguments to definie the game patameters
 
@@ -50,13 +51,7 @@ int main(int argc, char **argv) {
     ChessBoard *board = new ChessBoard();
     ChessBoard *copy = new ChessBoard();
 
-    // files to keep track of moves and time
-    ofstream timeAI;
-    timeAI.open ("time.txt");
-    ofstream move;
-    move.open ("moves.txt");
-
-
+    // read in the arguments
     if (argc > 1) {
         aiType = atoi(argv[1]);
     }
@@ -66,6 +61,28 @@ int main(int argc, char **argv) {
     if (argc > 3) {
         nThreads = atoi(argv[3]);
     }
+    if (argc > 4) {
+        test = atoi(argv[4]);
+    }
+
+
+    // files to keep track of moves and time
+    ofstream timeAI;
+    timeAI.open ("time_" + to_string(aiType) + ".txt");
+    ofstream move;
+    move.open ("moves.txt");
+
+    FILE* testFile;
+
+    if (test == 1) {
+        // test file
+        string filename("test.txt");
+        testFile = fopen("test.txt", "r");
+        if (testFile == NULL) {
+            return EXIT_FAILURE;
+        }
+    }
+
 
 
     cout << "Starting Game\n" << endl;
@@ -80,22 +97,39 @@ int main(int argc, char **argv) {
     
     // keep on playing the game till someone wins
     // win condition: other players king count is 0
+    int turnNumb = 1;
     while (1) {
         // player(white) turn
-        board->turn = WHITE; 
+        board->turn = WHITE;
         cout << "Your Turn: " << endl;
+        
 
         int inputError = 0;
         int initial;
         int final;
+        char* c_line = nullptr;
+        size_t len = 0;
         string in_initial;
         string in_final;
+        string testFileLine;
         do {
             if (inputError > 0) {
                 cout << "Please enter a valid move: " << endl;
             }
             // get player move
-            cin >> in_initial >> in_final;
+            if (test != 1) {
+                cin >> in_initial >> in_final;
+            } else {
+                // read in from test file moves
+                if (getline(&c_line, &len, testFile) != -1) {
+                    testFileLine.assign(c_line);
+                    in_initial = testFileLine.substr(0, 2);
+                    in_final = testFileLine.substr(3, 2);
+                    cout << in_initial << " " << in_final << endl;
+                } else {
+                    return EXIT_FAILURE;
+                }
+            }
             initial = getTileOnBoard(in_initial[0], in_initial[1]);
             final = getTileOnBoard(in_final[0], in_final[1]);
             inputError++;
@@ -127,7 +161,6 @@ int main(int argc, char **argv) {
         // end time
         auto end = std::chrono::high_resolution_clock::now();
         long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-        cout <<  (double) microseconds/1000000 << endl;
 
         delete board;
         board = copy;
@@ -135,8 +168,7 @@ int main(int argc, char **argv) {
         // get the time taken
         
         board->print();
-        timeAI << (double) microseconds/1000000 << endl;
-        cout << (double) microseconds/1000000 << endl;
+        timeAI << turnNumb << " " << (double) microseconds/1000000 << endl;
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {
@@ -145,7 +177,7 @@ int main(int argc, char **argv) {
             break;
         }
 
-
+        turnNumb++;
     }
 
     timeAI.close();
