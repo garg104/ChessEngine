@@ -52,7 +52,7 @@ Your Turn:
 a7 a5
 ```
 
-User will always play as the white player and the computer will always play as the black player. Inputting a valid move will change the state of the board after which the computer will play its move recording both the time it took to play that move in a ```.txt``` file with the name convention: ```time_$AI_Type$.txt```. For example the above execution will generate a time file named ```time_2.txt```. After the move ```a7 a5``` the new board state will be printed out.
+User will always play as the white player and the computer will always play as the black player. Inputting a valid move will change the state of the board after which the computer will play its move recording the time it took to play in a ```.txt``` file with the name convention: ```time_$AI_Type$.txt```. For example the above execution will generate a time file named ```time_2.txt```. After the move ```a7 a5``` the new board state will be printed out.
 
 ```bash
 Your Turn: 
