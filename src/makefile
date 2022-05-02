@@ -3,7 +3,7 @@ GLIB=$(shell pkg-config --cflags --libs glib-2.0)
 all: build
 
 build: 
-	g++ Chess.cpp -Wall $(GLIB) -o chess.out
+	g++ -std=c++11 Chess.cpp -Wall $(GLIB) -o Chess.exe
 	
 clean:
-	rm chess.out -f
+	rm Chess.exe *.txt

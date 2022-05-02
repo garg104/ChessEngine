@@ -27,7 +27,4 @@ struct ThreadData{
     int threadId;
 };
 
-
-
-
 #endif

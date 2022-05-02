@@ -5,14 +5,14 @@ class ChessBoard {
 public:
     int chessBoard[64];                // the actual game board
     std::map<int, GamePiece *> pieces; // a hashmap to keep track of the game pieces
-    int gamePieceCount[15];            // the number of a particual game piece on the board
+    int gamePieceCount[15];            // the number of a particular game piece on the board
     int turn;                          // to keep track on the player whose turn it is
 
     ChessBoard() {
-        turn = 0;               // white plays first always
-        makePieces();           // make the game peices
-        setGamePieceCounts();   // set the number of game peices
-        setGamePiecesOnBoard(); // set the pieces on the board
+        turn = 0;                      // white plays first always
+        makePieces();                  // make the game pieces
+        setGamePieceCounts();          // set the number of game pieces
+        setGamePiecesOnBoard();        // set the pieces on the board
     }
 
     /*
@@ -30,7 +30,7 @@ public:
                 // subtract to the score
                 if(chessBoard[i] == whitePawn || chessBoard[i] == blackPawn){
 				    value -= 100;
-                } else if(chessBoard[i] == whiteKinght || chessBoard[i] == blackKinght){
+                } else if(chessBoard[i] == whiteKnight || chessBoard[i] == blackKnight){
                     value -= 320;
                 } else if(chessBoard[i] == whiteBishop || chessBoard[i] == blackBishop){
                     value -= 330;
@@ -102,12 +102,11 @@ public:
      * move the piece from initial to destination if possible
      */
     bool moveGamePieceToDestination(int initial, int final, int currentPlayer) {
-        int flag = 0;
         // make sure the initial position is not empty
         if (chessBoard[initial] != nil) { 
             // make sure that it is the current player's piece
             if (pieces[chessBoard[initial]]->player == currentPlayer) {
-                // make sure that the desitnation is empty or has oponents piece(kill)
+                // make sure that the destination is empty or has opponents piece(kill)
                 if ((chessBoard[final] == nil) ||
                     (pieces[chessBoard[final]]->player != currentPlayer)) {
                     // check if the move is a valid move for the piece player is trying to move
@@ -146,8 +145,8 @@ public:
         pieces[whitePawn] = new Pawn(WHITE);
         pieces[blackPawn] = new Pawn(BLACK);
 
-        pieces[whiteKinght]	= new Knight(WHITE);
-        pieces[blackKinght]	= new Knight(BLACK);
+        pieces[whiteKnight]	= new Knight(WHITE);
+        pieces[blackKnight]	= new Knight(BLACK);
 
         pieces[whiteBishop]	= new Bishop(WHITE);
         pieces[blackBishop]	= new Bishop(BLACK);
@@ -168,7 +167,7 @@ public:
      * refer to gameSetup.cpp for more info
      */
     void setGamePieceCounts() {
-        // initialize everythinig with -1
+        // initialize everything with -1
         for (int i = 0; i < 15; i++) {
             gamePieceCount[i] = -1;
         }
@@ -176,7 +175,7 @@ public:
         // white pieces
         gamePieceCount[whitePawn] = 8;
         gamePieceCount[whiteBishop] = 2;
-        gamePieceCount[whiteKinght] = 2;
+        gamePieceCount[whiteKnight] = 2;
         gamePieceCount[whiteRook] = 2;
         gamePieceCount[whiteQueen] = 1;
         gamePieceCount[whiteKing] = 1;
@@ -184,7 +183,7 @@ public:
         // black pieces
         gamePieceCount[blackPawn] = 8;
         gamePieceCount[blackBishop] = 2;
-        gamePieceCount[blackKinght] = 2;
+        gamePieceCount[blackKnight] = 2;
         gamePieceCount[blackRook] = 2;
         gamePieceCount[blackQueen] = 1;
         gamePieceCount[blackKing] = 1;
@@ -204,12 +203,12 @@ public:
 
         // set black pieces
         chessBoard[a1] = blackRook;
-        chessBoard[b1] = blackKinght;
+        chessBoard[b1] = blackKnight;
         chessBoard[c1] = blackBishop;
         chessBoard[d1] = blackQueen;
         chessBoard[e1] = blackKing;
         chessBoard[f1] = blackBishop;
-        chessBoard[g1] = blackKinght;
+        chessBoard[g1] = blackKnight;
         chessBoard[h1] = blackRook;
         for (int i = 8; i <=15; i++) {
             chessBoard[i] = blackPawn;
@@ -217,12 +216,12 @@ public:
 
         // set white pieces
         chessBoard[a8] = whiteRook;
-        chessBoard[b8] = whiteKinght;
+        chessBoard[b8] = whiteKnight;
         chessBoard[c8] = whiteBishop;
         chessBoard[d8] = whiteQueen;
         chessBoard[e8] = whiteKing;
         chessBoard[f8] = whiteBishop;
-        chessBoard[g8] = whiteKinght;
+        chessBoard[g8] = whiteKnight;
         chessBoard[h8] = whiteRook;
         for (int i = 48; i <=55; i++) {
             chessBoard[i] = whitePawn;
@@ -243,7 +242,7 @@ public:
                     case whitePawn:
                         cout << "P|";
                         break;
-                    case whiteKinght:
+                    case whiteKnight:
                         cout << "K|";
                         break;
                     case whiteBishop:
@@ -261,7 +260,7 @@ public:
                     case blackPawn:
                         cout << "p|";
                         break;
-                    case blackKinght:
+                    case blackKnight:
                         cout << "k|";
                         break;
                     case blackBishop:
@@ -284,7 +283,7 @@ public:
             cout << "  " << i + 1 << endl;
         }
         cout << "    - - - - - - - - " << endl
-             << "    a b c d e f g h " << endl;
+             << "    a b c d e f g h \n" << endl;
     }
 
     /*

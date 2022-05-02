@@ -4,7 +4,7 @@
 
 /*
  *
- * Use of Glib library for thread managment
+ * Use of Glib library for thread management
  * https://www.freedesktop.org/software/gstreamer-sdk/data/docs/latest/glib/glib-Thread-Pools.html
  * 
  */
@@ -100,7 +100,7 @@ static void *moveExploration(gpointer thread_data, gpointer user_data) {
         // replace the current bestMove with the better one
         prune->bestMove = tempMove;
         prune->bestMoveIndex = data->threadId;
-        // update alpha-beta by gettting scores
+        // update alpha-beta by getting scores
         if (data->action == 1) {
             // Black
             g_mutex_lock(&prune->pruneMutex);
@@ -151,7 +151,7 @@ ChessBoard* alphaBetaMiniMax(struct PruneData* prune, int depth, ChessBoard* boa
             // replace the current bestMove with the better one
             bestMove = tempMove;
             bestMoveIndex = i;
-            // update alpha-beta by gettting scores
+            // update alpha-beta by getting scores
             if (childAction == 1) {
                 // Black
                 beta = tempMove->evaluate(BLACK);
@@ -176,11 +176,6 @@ ChessBoard* alphaBetaMiniMax(struct PruneData* prune, int depth, ChessBoard* boa
     }
 
     return finalResult;
-
-
-
-
-
 }
 
 

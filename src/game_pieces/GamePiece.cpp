@@ -11,7 +11,7 @@ class GamePiece {
             return player;
         }
 
-        virtual bool checkMoveValidity(int orgin, int dest, int* myboard) {
+        virtual bool checkMoveValidity(int origin, int dest, int* board) {
             return false;
         };
 

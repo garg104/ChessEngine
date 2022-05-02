@@ -20,6 +20,7 @@ class StaticEvaluation {
                 0,   0,   0,   0,   0,   0,   0,   0  
             };
             
+            /*
             int scoreOff[64]	=	{
                 0,   0,   0,   0,   0,   0,   0,   0,
                 50,  50,  50,  50,  50,  50,  50,  50,
@@ -30,6 +31,7 @@ class StaticEvaluation {
                 5,  10,  10, -20, -20,  10,  10,   5,
                 0,   0,   0,   0,   0,   0,   0,   0  
             };
+            */
             
             int scoreKnight[64]	=	{
                 -50, -40, -30, -30, -30, -30, -40, -50,
@@ -102,14 +104,14 @@ class StaticEvaluation {
 
             for(int i=0; i<64; i++){
                 score[whitePawn][i] = scorePawn[i];
-                score[whiteKinght][i] = scoreKnight[i];
+                score[whiteKnight][i] = scoreKnight[i];
                 score[whiteBishop][i] = scoreBishop[i];
                 score[whiteRook][i] = scoreRook[i];
                 score[whiteQueen][i] = scoreQueen[i];
                 
                 // value of black is reverse the board
                 score[blackPawn][i]   = scorePawn[63 - i];
-                score[blackKinght][i] = scoreKnight[63 - i];
+                score[blackKnight][i] = scoreKnight[63 - i];
                 score[blackBishop][i] = scoreBishop[63 - i];
                 score[blackRook][i]   = scoreRook[63 - i];
                 score[blackQueen][i]  = scoreQueen[63 - i];

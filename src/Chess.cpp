@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
     int aiType = 1;
     int test = 0;
 
-    // parse in the arguments to definie the game patameters
+    // parse in the arguments to define the game parameters
 
     // make the chess board to play the game on
     ChessBoard *board = new ChessBoard();
@@ -148,7 +148,7 @@ int main(int argc, char **argv) {
 
         // AI move (black player)
         board->turn = BLACK;
-        cout << "Computer's Turn: " << endl;
+        cout << "Computer's Turn: \n" << endl;
 
         // start time
         auto start = std::chrono::high_resolution_clock::now();

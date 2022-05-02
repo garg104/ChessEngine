@@ -14,7 +14,7 @@ typedef unsigned long long  U64;
 #define WHITE 0 // define value for white player
 #define BLACK 1 // define value for black player
 
-// define board alpha-numeric vaules per tile 
+// define board alpha-numeric values per tile 
 enum boardRepresentation {
     a1, b1, c1, d1, e1, f1, g1, h1,
     a2, b2, c2, d2, e2, f2, g2, h2,
@@ -39,7 +39,7 @@ enum gamePieceType {
 
 enum gamePieceValue {
     whitePawn = pawn,
-    whiteKinght = knight,
+    whiteKnight = knight,
     whiteBishop = bishop,
     whiteRook = rook,
     whiteQueen = queen,
@@ -48,7 +48,7 @@ enum gamePieceValue {
     convertor = 8, // color code to divide black and white pieces
 
     blackPawn = pawn + convertor,
-    blackKinght = knight + convertor,
+    blackKnight = knight + convertor,
     blackBishop = bishop + convertor,
     blackRook = rook + convertor,
     blackQueen = queen + convertor,

@@ -27,7 +27,7 @@ ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alp
             // replace the current bestMove with the better one
             bestMove = tempMove;
             bestMoveIndex = i;
-            // update alpha-beta by gettting scores
+            // update alpha-beta by getting scores
             if (childAction == 1) {
                 // Black
                 beta = tempMove->evaluate(BLACK);
