@@ -19,7 +19,7 @@ ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alp
     int bestMoveIndex = 0;
     
     // go over all the possible moves
-    for (int i = 0; i < possibleMoves.size(); i++) {
+    for (int i = 0; i < (int) possibleMoves.size(); i++) {
         // make tree
         ChessBoard* tempMove = alphaBetaPruning(maxDepth, possibleMoves[i], depth + 1, alpha, beta, childAction);
         // see if the move is the best move or not
@@ -47,7 +47,7 @@ ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alp
     *finalResult = *possibleMoves[bestMoveIndex];
 
     // free the memory
-    for (int i = 0; i < possibleMoves.size(); i++) {
+    for (int i = 0; i < (int) possibleMoves.size(); i++) {
         delete possibleMoves[i];
     }
 

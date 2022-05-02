@@ -54,7 +54,7 @@ ChessBoard* PVSplitting(int nThreads, int maxDepth, ChessBoard* board, int depth
         // start execution on threads
         GThreadPool* pool = g_thread_pool_new((GFunc) &moveExploration, prune, nThreads, false, NULL);
         struct ThreadData* data = (struct ThreadData*) malloc(sizeof(struct ThreadData) *possibleMoves.size());
-        for (int i = 1; i < possibleMoves.size(); i++) {
+        for (int i = 1; i < (int) possibleMoves.size(); i++) {
             data[i].threadId = i;
             data[i].board = possibleMoves[i];
             data[i].depth = depth + 1;
@@ -71,7 +71,7 @@ ChessBoard* PVSplitting(int nThreads, int maxDepth, ChessBoard* board, int depth
     *finalResult = *possibleMoves[prune->bestMoveIndex];
 
     // free the memory
-    for (int i = 0; i < possibleMoves.size(); i++) {
+    for (int i = 0; i < (int) possibleMoves.size(); i++) {
         delete possibleMoves[i];
     }
     free(prune);
@@ -136,13 +136,13 @@ ChessBoard* alphaBetaMiniMax(struct PruneData* prune, int depth, ChessBoard* boa
     
     // go over all the possible moves
     int childAction = (action == 1 ? 0 : 1);
-    for (int i = 0; i < possibleMoves.size(); i++) {
+    for (int i = 0; i < (int) possibleMoves.size(); i++) {
         // make tree
         ChessBoard* tempMove = alphaBetaMiniMax(prune, depth + 1, possibleMoves[i], alpha, beta, childAction);
         // see if the move is the best move or not
         if (tempMove == NULL) {
             // free the memory
-            for (int i = 0; i < possibleMoves.size(); i++) {
+            for (int i = 0; i < (int) possibleMoves.size(); i++) {
                 delete possibleMoves[i];
             }
             return NULL;
@@ -171,7 +171,7 @@ ChessBoard* alphaBetaMiniMax(struct PruneData* prune, int depth, ChessBoard* boa
     *finalResult = *possibleMoves[bestMoveIndex];
 
     // free the memory
-    for (int i = 0; i < possibleMoves.size(); i++) {
+    for (int i = 0; i < (int) possibleMoves.size(); i++) {
         delete possibleMoves[i];
     }
 
