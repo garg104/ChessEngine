@@ -77,3 +77,5 @@ Computer's Turn:
 Now the computer will proceed with its turn and this will continue till one player wins the game.
 
 > **_NOTE:_** Pawn promotion and castling has not been implemented yet.
+
+Graphs showing the comparison of the two methods based on the time they take is shown in the folder named ```graph_files```.
