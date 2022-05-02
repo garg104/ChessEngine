@@ -90,7 +90,7 @@ static void *moveExploration(gpointer thread_data, gpointer user_data) {
     int beta = prune->beta;
     g_mutex_unlock(&prune->pruneMutex);
 
-    ChessBoard *tempMove = alphaBetaMiniMax(prune, data->depth, data->board, prune->alpha, prune->beta, data->action);
+    ChessBoard *tempMove = alphaBetaMiniMax(prune, data->depth, data->board, alpha, beta, data->action);
     if (tempMove == NULL) {
         return NULL;
     }
