@@ -143,6 +143,7 @@ int main(int argc, char **argv) {
         if (board->gamePieceCount[blackKing] == 0) {
             // white wins
             cout << "White Wins!" << endl;
+            break;
         }
 
 
