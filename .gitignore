@@ -8,3 +8,4 @@
 *.p
 .DS_Store
 .vscode
+*.exe.dSYM
