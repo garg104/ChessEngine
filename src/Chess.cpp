@@ -40,10 +40,10 @@ int getTileOnBoard(char a, char b) {
 int main(int argc, char **argv) {
 
     // default values
-    int maxDepth = 5;
-    int nThreads = 5;
+    int maxDepth = 4;
+    int nThreads = 1;
     int aiType = 1;
-    int test = 0;
+    int test = 2;
 
     // parse in the arguments to define the game parameters
 
@@ -76,8 +76,8 @@ int main(int argc, char **argv) {
 
     if (test == 1) {
         // test file
-        string filename("test.txt");
-        testFile = fopen("test.txt", "r");
+        string filename("test.moves");
+        testFile = fopen("test.moves", "r");
         if (testFile == NULL) {
             return EXIT_FAILURE;
         }
@@ -117,9 +117,9 @@ int main(int argc, char **argv) {
                 cout << "Please enter a valid move: " << endl;
             }
             // get player move
-            if (test != 1) {
+            if (test == 0) {
                 cin >> in_initial >> in_final;
-            } else {
+            } else if (test == 1) {
                 // read in from test file moves
                 if (getline(&c_line, &len, testFile) != -1) {
                     testFileLine.assign(c_line);
@@ -129,7 +129,20 @@ int main(int argc, char **argv) {
                 } else {
                     return EXIT_FAILURE;
                 }
+            } else {
+              if (aiType == 1) {
+                copy = alphaBetaPrune(maxDepth, board, 0);
+              } else {
+                //cout << "PV Splitting" << endl;
+                copy = PVSplit(nThreads, maxDepth, board);
+              }   
+              delete board;
+              board = copy;
+              // board->print();
+
+              break;
             }
+            
             initial = getTileOnBoard(in_initial[0], in_initial[1]);
             final = getTileOnBoard(in_final[0], in_final[1]);
             inputError++;
@@ -152,16 +165,16 @@ int main(int argc, char **argv) {
         cout << "Computer's Turn: \n" << endl;
 
         // start time
-        auto start = std::chrono::high_resolution_clock::now();
+        //auto start = std::chrono::high_resolution_clock::now();
         if (aiType == 1) {
-            copy = alphaBetaPrune(maxDepth, board);
+            copy = alphaBetaPrune(maxDepth, board, 1);
         } else {
             //cout << "PV Splitting" << endl;
             copy = PVSplit(nThreads, maxDepth, board);
         }
         // end time
-        auto end = std::chrono::high_resolution_clock::now();
-        long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        //auto end = std::chrono::high_resolution_clock::now();
+        //long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 
         delete board;
         board = copy;
@@ -169,7 +182,7 @@ int main(int argc, char **argv) {
         // get the time taken
         
         board->print();
-        timeAI << turnNumb << " " << (double) microseconds/1000000 << endl;
+        //timeAI << turnNumb << " " << (double) microseconds/1000000 << endl;
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {
@@ -179,6 +192,11 @@ int main(int argc, char **argv) {
         }
 
         turnNumb++;
+    }
+
+    if (test == 1) {
+      fclose(testFile);
+      testFile = NULL;
     }
 
     timeAI.close();
