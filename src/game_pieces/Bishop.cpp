@@ -106,7 +106,9 @@ class Bishop : public GamePiece {
         }
 
 
-        ~Bishop();
+        ~Bishop() {
+            
+        }
 
 
 };

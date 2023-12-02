@@ -102,7 +102,9 @@ class King : public GamePiece {
         }
 
 
-        ~King();
+        ~King() {
+            
+        }
 
 
 };

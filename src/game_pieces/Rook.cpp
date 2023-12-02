@@ -66,7 +66,9 @@ class Rook : public GamePiece {
         }
 
 
-        ~Rook();
+        ~Rook() {
+            
+        }
         
 
 };

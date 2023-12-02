@@ -4,12 +4,17 @@
 #include "../ChessBoard.cpp"
 
 
-bool isMoveBetterThan(ChessBoard* tempMove, ChessBoard* bestMove, int action) {
+bool isMoveBetterThan(ChessBoard* tempMove, ChessBoard* bestMove, int action, int player) {
     // return true;
-    return (action == 1) ? (tempMove->evaluate(BLACK) > bestMove->evaluate(BLACK)) : (tempMove->evaluate(WHITE) < bestMove->evaluate(WHITE));
+    //if (player == BLACK) {
+        return (action == 1) ? (tempMove->evaluate(BLACK) > bestMove->evaluate(BLACK)) : (tempMove->evaluate(WHITE) < bestMove->evaluate(WHITE));
+    //} else {
+        // return (action == 1) ? (tempMove->evaluate(BLACK) < bestMove->evaluate(BLACK)) : (tempMove->evaluate(WHITE) > bestMove->evaluate(WHITE));
+    //}
+    
 }
 
-ChessBoard* alphaBetaPrune(int maxDepth, ChessBoard* board);
-ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alpha, int beta, int action);
+ChessBoard* alphaBetaPrune(int maxDepth, ChessBoard* board, int player);
+ChessBoard* alphaBetaPruning(int maxDepth, ChessBoard* board, int depth, int alpha, int beta, int action, int player);
 
 #endif

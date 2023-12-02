@@ -139,7 +139,9 @@ class Queen : public GamePiece {
         }
 
 
-        ~Queen();
+        ~Queen() {
+            
+        }
         
 
 };

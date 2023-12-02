@@ -96,7 +96,7 @@ static void *moveExploration(gpointer thread_data, gpointer user_data) {
     }
 
     g_mutex_lock(&prune->resultMutex);
-    if (prune->bestMove == NULL || isMoveBetterThan(tempMove, prune->bestMove, data->action)) {
+    if (prune->bestMove == NULL || isMoveBetterThan(tempMove, prune->bestMove, data->action, 1)) {
         // replace the current bestMove with the better one
         prune->bestMove = tempMove;
         prune->bestMoveIndex = data->threadId;
@@ -147,7 +147,7 @@ ChessBoard* alphaBetaMiniMax(struct PruneData* prune, int depth, ChessBoard* boa
             }
             return NULL;
         }
-        if (bestMove == NULL || isMoveBetterThan(tempMove, bestMove, action)) {
+        if (bestMove == NULL || isMoveBetterThan(tempMove, bestMove, action, 1)) {
             // replace the current bestMove with the better one
             bestMove = tempMove;
             bestMoveIndex = i;

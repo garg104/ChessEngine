@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
         }
     }
 
-
+    srand(100);
 
     cout << "Starting Game\n" << endl;
 
@@ -94,7 +94,7 @@ int main(int argc, char **argv) {
 
     cout << "\nPLAYER INPUT FORMAT IS: INITIAL DESTINATION\n" << endl;
 
-    
+    cout << getTileOnBoard('f', '6') << endl << flush;
     // keep on playing the game till someone wins
     // win condition: other players king count is 0
     int turnNumb = 1;
@@ -142,6 +142,7 @@ int main(int argc, char **argv) {
 
               break;
             }
+
             
             initial = getTileOnBoard(in_initial[0], in_initial[1]);
             final = getTileOnBoard(in_final[0], in_final[1]);
@@ -165,7 +166,7 @@ int main(int argc, char **argv) {
         cout << "Computer's Turn: \n" << endl;
 
         // start time
-        //auto start = std::chrono::high_resolution_clock::now();
+        auto start = std::chrono::high_resolution_clock::now();
         if (aiType == 1) {
             copy = alphaBetaPrune(maxDepth, board, 1);
         } else {
@@ -173,8 +174,8 @@ int main(int argc, char **argv) {
             copy = PVSplit(nThreads, maxDepth, board);
         }
         // end time
-        //auto end = std::chrono::high_resolution_clock::now();
-        //long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        auto end = std::chrono::high_resolution_clock::now();
+        long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 
         delete board;
         board = copy;
@@ -182,7 +183,7 @@ int main(int argc, char **argv) {
         // get the time taken
         
         board->print();
-        //timeAI << turnNumb << " " << (double) microseconds/1000000 << endl;
+        timeAI << turnNumb << " " << (double) microseconds/1000000 << endl << flush;
 
         // check for black's victory
         if (board->gamePieceCount[whiteKing] == 0) {

@@ -54,7 +54,8 @@ class Pawn : public GamePiece {
         }
         
 
-        ~Pawn();
-        
+        ~Pawn() {
+            
+        }
 
 };

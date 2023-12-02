@@ -16,7 +16,9 @@ class GamePiece {
         };
 
 
-        ~GamePiece();
+        ~GamePiece() {
+            
+        }
 };
 
 

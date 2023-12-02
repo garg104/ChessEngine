@@ -55,6 +55,9 @@ public:
                 value += 100000;
             }
 	    }
+        delete scoreTables;
+        
+
         
         return value;
 
@@ -66,6 +69,8 @@ public:
      * find  and return the list of all the possible moves at the given instance of the board 
      */
     vector<ChessBoard*> getAllPossibleMoves(int player) {
+        // cout << "in possible moves" << "\n" << endl << flush;
+
         vector<ChessBoard*> moves;
         // make a trial chess board on which to try the moves and copy the existing board in it
         ChessBoard* trial = new ChessBoard();
@@ -75,6 +80,8 @@ public:
         for (int initial = 0; initial < 64; initial++) {
             // make sure that the initial has the player's piece at that position
             if (chessBoard[initial] != nil && pieces[chessBoard[initial]]->player == player) {
+                
+
                 for (int final = 0; final < 64; final++) {
                     // make sure that the move is valid and add the move to the list and restore the board
                     if (final != initial) {

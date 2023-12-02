@@ -39,7 +39,9 @@ class Knight: public GamePiece {
         }
 
 
-        ~Knight();
+        ~Knight() {
+            
+        }
 
 
 };
