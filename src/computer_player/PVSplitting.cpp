@@ -20,8 +20,8 @@
  * 
  * from - https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.218.405&rep=rep1&type=pdf
  */
-ChessBoard* PVSplit(int nThreads, int maxDepth, ChessBoard* board) {
-    return PVSplitting(nThreads, maxDepth, board,  1, -INT_MAX, INT_MAX, 1);
+ChessBoard* PVSplit(int nThreads, int maxDepth, ChessBoard* board, int player) {
+    return PVSplitting(nThreads, maxDepth, board,  1, -INT_MAX, INT_MAX, player);
 }
 
 ChessBoard* PVSplitting(int nThreads, int maxDepth, ChessBoard* board, int depth, int alpha, int beta, int action) {

@@ -25,6 +25,7 @@ struct ThreadData{
     int depth;
     int action;
     int threadId;
+    int player;
 };
 
 #endif

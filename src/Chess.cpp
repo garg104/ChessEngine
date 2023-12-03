@@ -74,6 +74,10 @@ int main(int argc, char **argv) {
 
     FILE* testFile;
 
+    // string startingGame;
+    cin >> aiType >> maxDepth >> nThreads >> test;
+    cout << aiType << maxDepth << nThreads << test << endl << flush;
+
     if (test == 1) {
         // test file
         string filename("test.moves");
@@ -94,7 +98,7 @@ int main(int argc, char **argv) {
 
     cout << "\nPLAYER INPUT FORMAT IS: INITIAL DESTINATION\n" << endl;
 
-    cout << getTileOnBoard('f', '6') << endl << flush;
+    // cout << getTileOnBoard('f', '6') << endl << flush;
     // keep on playing the game till someone wins
     // win condition: other players king count is 0
     int turnNumb = 1;
@@ -134,7 +138,7 @@ int main(int argc, char **argv) {
                 copy = alphaBetaPrune(maxDepth, board, 0);
               } else {
                 //cout << "PV Splitting" << endl;
-                copy = PVSplit(nThreads, maxDepth, board);
+                copy = PVSplit(nThreads, maxDepth, board, 0);
               }   
               delete board;
               board = copy;
@@ -171,7 +175,7 @@ int main(int argc, char **argv) {
             copy = alphaBetaPrune(maxDepth, board, 1);
         } else {
             //cout << "PV Splitting" << endl;
-            copy = PVSplit(nThreads, maxDepth, board);
+            copy = PVSplit(nThreads, maxDepth, board, 1);
         }
         // end time
         auto end = std::chrono::high_resolution_clock::now();
